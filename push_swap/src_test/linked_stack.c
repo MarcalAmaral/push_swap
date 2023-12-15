@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:53:06 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/13 16:58:38 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/15 15:23:26 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,89 @@ t_stack	*ft_lstlast_stack(t_stack *stack)
 	return (stack);
 }
 
-void	ft_append_next_stack(t_stack **head, t_stack *node)
+void	ft_append_stack(t_stack **head, t_stack **tail, t_stack *node)
 {
 	t_stack	*temp;
+	t_stack	*temp1;
 
 	if (!node)
 		return ;
 	if (!*head)
 	{
 		*head = node;
+		*tail = node;
 		return ;
 	}
-	temp = ft_lstlast_stack(*head);
-	temp->next = node;
+	/* Circular list */
+	/* if have 1 element and introduce 2nd element proceed*/
+	temp = *head;
+	if (temp->next == NULL)
+	{
+		*head = node;
+		*tail = temp;
+		node->next = temp;
+		node->prev = temp;
+		temp->prev = node;
+		temp->next = node;
+	}
+	else
+	{
+		/* If have 2 or more elements proceed */
+		/* temp1 equals the last value of a list (temp1->next = first_value) : node equals the first value (node->prev = last_value)*/
+		/* previous first value it will be the second value, with (prev == first_value && next == 3nd value)*/
+		/* */
+		temp1 = *tail;
+		temp1->next = node;
+		node->prev = temp1;
+		node->next = temp;
+		temp->prev = node;
+		*head = node;
+	}
 	return ;
+}
+
+void	ft_print_linkedlist(t_stack **head, t_stack **tail)
+{
+	t_stack *temp;
+
+	if (!*head)
+		return ;
+	temp = *head;
+	while (temp)
+	{
+		printf("%d\n", temp->content);
+		if (temp->next == *tail)
+			break ;
+		temp = temp->next;
+	}
+	temp = temp->next;
+	printf("%d\n", temp->content);
+	return ;
+}
+
+int	main(void)
+{
+	t_push	push;
+	int arr[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+	int arr1[10] = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+	int i = 9;
+
+	ft_bzero(&push, sizeof(t_push));
+	while (i >= 0)
+	{
+		ft_append_stack(&push.head_stack_a, &push.tail_stack_a, ft_newnode_stack(arr[i]));
+		ft_append_stack(&push.head_stack_b, &push.tail_stack_b, ft_newnode_stack(arr1[i]));
+		i--;
+	}
+	ft_print_linkedlist(&push.head_stack_a, &push.tail_stack_a);
+	printf("Stack A \n------------------------------------\n");
+	mov_swap(&push.head_stack_a);
+	ft_print_linkedlist(&push.head_stack_a, &push.tail_stack_a);
+	printf("Stack A after 'sa' \n------------------------------------\n");
+	ft_print_linkedlist(&push.head_stack_b, &push.tail_stack_b);
+	printf("Stack B \n------------------------------------\n");
+	mov_swap(&push.head_stack_b);
+	ft_print_linkedlist(&push.head_stack_b, &push.tail_stack_b);
+	printf("Stack B after 'sa' \n------------------------------------\n");
+	return (0);
 }
