@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:53:06 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/15 15:23:26 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/15 19:06:57 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	ft_append_stack(t_stack **head, t_stack **tail, t_stack *node)
 
 void	ft_print_linkedlist(t_stack **head, t_stack **tail)
 {
+	int i = 0;
 	t_stack *temp;
 
 	if (!*head)
@@ -87,35 +88,49 @@ void	ft_print_linkedlist(t_stack **head, t_stack **tail)
 		if (temp->next == *tail)
 			break ;
 		temp = temp->next;
+		i++;
 	}
-	temp = temp->next;
-	printf("%d\n", temp->content);
+	if (i > 1)
+	{
+		temp = temp->next;
+		printf("%d\n", temp->content);
+	}
 	return ;
 }
 
 int	main(void)
 {
-	t_push	push;
+	t_push	a;
+	t_push	b;
 	int arr[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 	int arr1[10] = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
 	int i = 9;
 
-	ft_bzero(&push, sizeof(t_push));
+	ft_bzero(&a, sizeof(t_push));
+	ft_bzero(&b, sizeof(t_push));
 	while (i >= 0)
 	{
-		ft_append_stack(&push.head_stack_a, &push.tail_stack_a, ft_newnode_stack(arr[i]));
-		ft_append_stack(&push.head_stack_b, &push.tail_stack_b, ft_newnode_stack(arr1[i]));
+		ft_append_stack(&a.head, &a.tail, ft_newnode_stack(arr[i]));
+		// ft_append_stack(&b.head, &b.tail, ft_newnode_stack(arr1[i]));
 		i--;
 	}
-	ft_print_linkedlist(&push.head_stack_a, &push.tail_stack_a);
-	printf("Stack A \n------------------------------------\n");
-	mov_swap(&push.head_stack_a);
-	ft_print_linkedlist(&push.head_stack_a, &push.tail_stack_a);
-	printf("Stack A after 'sa' \n------------------------------------\n");
-	ft_print_linkedlist(&push.head_stack_b, &push.tail_stack_b);
-	printf("Stack B \n------------------------------------\n");
-	mov_swap(&push.head_stack_b);
-	ft_print_linkedlist(&push.head_stack_b, &push.tail_stack_b);
-	printf("Stack B after 'sa' \n------------------------------------\n");
+	// ft_print_linkedlist(&a.head, &a.tail);
+	// printf("Stack A \n------------------------------------\n");
+	// mov_swap(&a.head);
+	// ft_print_linkedlist(&a.head, &a.tail);
+	// printf("Stack A after 'sa' \n------------------------------------\n");
+	// ft_print_linkedlist(&b.head, &b.tail);
+	// printf("Stack B \n------------------------------------\n");
+	// mov_swap(&b.head);
+	// ft_print_linkedlist(&b.head, &b.tail);
+	// printf("Stack B after 'sa' \n------------------------------------\n");
+
+
+	move_push(&a, &b);
+	printf("Stack B ==============================================\n");
+	ft_print_linkedlist(&b.head, &b.tail);
+
+	printf("Stack A ==============================================\n");
+	ft_print_linkedlist(&a.head, &a.tail);
 	return (0);
 }

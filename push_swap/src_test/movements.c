@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:43:44 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/15 17:57:07 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/15 19:23:30 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,18 +37,32 @@ void	mov_swap(t_stack **head)
 }
 
 /* Push top element of an stack to another */
-void	move_push(t_stack **head, t_stack **tail)
+void	move_push(t_push *src, t_push *dst)
 {
-	t_stack *node;
+	t_stack *node_src;
 	t_stack *temp;
+	t_stack *last;
 	
-	if (!*head)
+	if (!src->head)
 		return ;
-	node = *head;
-	if (node->next == NULL);
-		return ;
-	else {
-		
+	node_src = src->head;
+	if (node_src->next == NULL)
+	{
+		src->head = NULL;
+		src->tail = NULL;
+		node_src->next = dst->head;
+		if (dst->head->next)
+			dst->head->prev = node_src;
+		dst->head = node_src;
+	}
+	else if (node_src->next != NULL)
+	{
+		node_src->next->prev = NULL;
+		dst->head = node_src;
+		dst->tail = node_src;
+		src->head = src->head->next;
+		src->head->next = src->tail;
+		last->next = temp;
 	}
 }
 
