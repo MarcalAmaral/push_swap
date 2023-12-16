@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:45:13 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/13 16:57:08 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/16 17:41:37 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,38 +58,12 @@ int	matrix_lenght(void **matrix)
 	return (i);
 }
 
-int	*ret_arr(char **matrix)
+int	matrix_int_lenght(int *arr)
 {
-	int	lenght;
-	int *arr;
 	int i;
 
-	lenght = matrix_lenght((void **) matrix);
-	arr = (int *) ft_calloc(lenght + 1, sizeof(int));
-	arr[lenght] = 0;
 	i = 0;
-	while (i < lenght)
-	{
-		arr[i] = ft_atoi(matrix[i]);
+	while (arr[i])
 		i++;
-	}
-	return (arr);
-}
-
-int	*ret_arr_from_argv(char **argv)
-{
-	int	lenght;
-	int *arr;
-	int i;
-
-	lenght = matrix_lenght((void **) argv);
-	arr = (int *) ft_calloc(lenght, sizeof(int));
-	arr[lenght] = 0;
-	i = 0;
-	while (i < lenght - 1)
-	{
-		arr[i] = ft_atoi(argv[i + 1]);
-		i++;
-	}
-	return (arr);
+	return (i);
 }

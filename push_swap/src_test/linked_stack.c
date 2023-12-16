@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:53:06 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/15 19:06:57 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:12:59 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_stack	*ft_newnode_stack(int content)
 	new_node = (t_stack *) ft_calloc(1, sizeof(t_stack));
 	new_node->content = content;
 	new_node->next = NULL;
+	new_node->prev = NULL;
 	return (new_node);
 }
 
@@ -78,59 +79,117 @@ void	ft_print_linkedlist(t_stack **head, t_stack **tail)
 {
 	int i = 0;
 	t_stack *temp;
+	t_stack *tail_p;
 
 	if (!*head)
 		return ;
 	temp = *head;
+	tail_p = *tail;
 	while (temp)
 	{
 		printf("%d\n", temp->content);
-		if (temp->next == *tail)
+		if (temp == *tail)
 			break ;
 		temp = temp->next;
 		i++;
 	}
-	if (i > 1)
+	return ;
+}
+
+void	init_push(t_push *a, t_push *b, int *arr)
+{
+	int	i;
+
+	ft_bzero(a, sizeof(t_push));
+	ft_bzero(b, sizeof(t_push));
+	i = matrix_int_lenght(arr) - 1;
+	while (i >= 0)
 	{
-		temp = temp->next;
-		printf("%d\n", temp->content);
+		ft_append_stack(&a->head, &a->tail, ft_newnode_stack(arr[i]));
+		i--;
 	}
 	return ;
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
-	t_push	a;
-	t_push	b;
-	int arr[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-	int arr1[10] = {10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-	int i = 9;
+	t_push a;
+	t_push b;
+	int *arr;
 
-	ft_bzero(&a, sizeof(t_push));
-	ft_bzero(&b, sizeof(t_push));
-	while (i >= 0)
+	if (argc < 2)
 	{
-		ft_append_stack(&a.head, &a.tail, ft_newnode_stack(arr[i]));
-		// ft_append_stack(&b.head, &b.tail, ft_newnode_stack(arr1[i]));
-		i--;
+		ft_putstr_fd("Error\n - Invalid num of args, pass one or more arguments\n", 2);
+		return (1);
 	}
-	// ft_print_linkedlist(&a.head, &a.tail);
-	// printf("Stack A \n------------------------------------\n");
-	// mov_swap(&a.head);
-	// ft_print_linkedlist(&a.head, &a.tail);
-	// printf("Stack A after 'sa' \n------------------------------------\n");
-	// ft_print_linkedlist(&b.head, &b.tail);
-	// printf("Stack B \n------------------------------------\n");
-	// mov_swap(&b.head);
-	// ft_print_linkedlist(&b.head, &b.tail);
-	// printf("Stack B after 'sa' \n------------------------------------\n");
-
-
-	move_push(&a, &b);
-	printf("Stack B ==============================================\n");
-	ft_print_linkedlist(&b.head, &b.tail);
-
-	printf("Stack A ==============================================\n");
+	if (argc == 2 && argv[1])
+	{
+		arr = convert_str_arr(argv[1]);
+		init_push(&a, &b, arr);
+	}
+	else if (argc > 2)
+	{
+		arr = convert_args_arr(argv);
+		init_push(&a, &b, arr);
+	}
+	mov_swap(&a);
 	ft_print_linkedlist(&a.head, &a.tail);
+	printf("Stack A \n------------------------------------\n");
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	t_push	a;
+// 	t_push	b;
+// 	int		*arr;
+// 	int		i;
+
+// 	ft_bzero(&a, sizeof(t_push));
+// 	ft_bzero(&b, sizeof(t_push));
+// 	i = matrix_lenght(arr);
+// 	while (i >= 0)
+// 	{
+// 		ft_append_stack(&a.head, &a.tail, ft_newnode_stack(arr[i]));
+// 		ft_append_stack(&b.head, &b.tail, ft_newnode_stack(arr1[i]));
+// 		i--;
+// 	}
+// 	// ft_print_linkedlist(&a.head, &a.tail);
+// 	// printf("Stack A \n------------------------------------\n");
+// 	// mov_swap(&a.head);
+// 	// ft_print_linkedlist(&a.head, &a.tail);
+// 	// printf("Stack A after 'sa' \n------------------------------------\n");
+// 	// ft_print_linkedlist(&b.head, &b.tail);
+// 	// printf("Stack B \n------------------------------------\n");
+// 	// mov_swap(&b.head);
+// 	// ft_print_linkedlist(&b.head, &b.tail);
+// 	// printf("Stack B after 'sa' \n------------------------------------\n");
+
+// 	mov_rrr(&a, &b);
+// 	mov_rrr(&a, &b);
+// 	mov_rrr(&a, &b);
+// 	printf("Stack B ==============================================\n");
+// 	ft_print_linkedlist(&b.head, &b.tail);
+// 	printf("Stack A ==============================================\n");
+// 	ft_print_linkedlist(&a.head, &a.tail);
+
+// 	// move_push(&a, &b);
+// 	// printf("Stack B ==============================================\n");
+// 	// ft_print_linkedlist(&b.head, &b.tail);
+
+// 	// printf("Stack A ==============================================\n");
+// 	// ft_print_linkedlist(&a.head, &a.tail);
+// 	// move_push(&b, &a);
+// 	// printf("Stack B ==============================================\n");
+// 	// ft_print_linkedlist(&b.head, &b.tail);
+
+// 	// printf("Stack A ==============================================\n");
+// 	// ft_print_linkedlist(&a.head, &a.tail);
+// 	// move_push(&b, &a);
+// 	// printf("Stack B ==============================================\n");
+// 	// ft_print_linkedlist(&b.head, &b.tail);
+
+// 	// printf("Stack A ==============================================\n");
+// 	// ft_print_linkedlist(&a.head, &a.tail);
+// 	return (0);
+// }

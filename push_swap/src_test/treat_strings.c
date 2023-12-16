@@ -6,11 +6,48 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:41:13 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/13 16:55:56 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:00:42 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
+
+int	*ret_arr(char **matrix)
+{
+	int	lenght;
+	int *arr;
+	int i;
+
+	lenght = matrix_lenght((void **) matrix);
+	arr = (int *) ft_calloc(lenght + 1, sizeof(int));
+	arr[lenght] = 0;
+	i = 0;
+	while (i < lenght)
+	{
+		arr[i] = ft_atoi(matrix[i]);
+		i++;
+	}
+	return (arr);
+}
+
+int	*ret_arr_from_argv(char **argv)
+{
+	int	lenght;
+	int *arr;
+	int i;
+
+	argv++;
+	lenght = matrix_lenght((void **) argv);
+	arr = (int *) ft_calloc(lenght + 1, sizeof(int));
+	arr[lenght] = 0;
+	i = 0;
+	while (i < lenght)
+	{
+		arr[i] = ft_atoi(argv[i]);
+		i++;
+	}
+	return (arr);
+}
 
 int	*convert_str_arr(char *str)
 {	
@@ -25,10 +62,7 @@ int	*convert_str_arr(char *str)
 int *convert_args_arr(char **argv)
 {
 	int		*arr;
-	t_stack	**head;
 
-	ft_print_matrix_str((void **) argv);
-	head = ret_arr_from_argv(argv);
-	ft_print_matrix_int(arr);
+	arr = ret_arr_from_argv(argv);
 	return (arr);
 }

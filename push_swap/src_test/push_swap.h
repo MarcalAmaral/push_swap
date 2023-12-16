@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:47:40 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/15 19:05:18 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/16 18:08:21 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,19 @@ void	ft_print_matrix_int(int *arr);
 int		*ret_arr(char **matrix);
 int		*convert_str_arr(char *str);
 int		*ret_arr_from_argv(char **argv);
-int		*convert_args_arr(char **argv);
+int 	*convert_args_arr(char **argv);
 
 /* Matrix ops */
 int		matrix_lenght(void **matrix);
-
-/* Create a stacks */
-t_stack **create_stacks(int *arr, int lenght);
+int		matrix_int_lenght(int *arr);
 
 /* Movements */
-void	mov_swap(t_stack **head);
-void	move_push(t_push *stack_src, t_push *stack_dst);
+void	mov_swap(t_push *stack);
+void	mov_push(t_push *stack_src, t_push *stack_dst);
+void	mov_ss(t_push *stack_a, t_push *stack_b);
+void	mov_rotate(t_push *stack);
+void	mov_rr(t_push *a, t_push *b);
+void	mov_reverse(t_push *stack);
+void	mov_rrr(t_push *a, t_push *b);
 
 #endif
