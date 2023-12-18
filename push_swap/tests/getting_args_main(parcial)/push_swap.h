@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 00:21:58 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/18 18:35:29 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/12 19:35:18 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/18 15:12:29 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
-{
-	int	signal;
-	int	result;
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-	signal = 1;
-	result = 0;
-	while (((*nptr >= 9) && (*nptr <= 13)) || *nptr == 32)
-		nptr++;
-	if ((*nptr == 45) || (*nptr == 43))
-	{
-		if (*nptr == 45)
-			signal *= -1;
-		nptr++;
-	}
-	while ((*nptr >= 48) && (*nptr <= 57))
-	{
-		result *= 10;
-		result += *nptr - 48;
-		nptr++;
-	}
-	return (result * signal);
-}
+# include "../../lib/libft/inc/libft.h"
+
+typedef struct s_stack {
+	int content;
+	struct s_stack *next;
+	struct s_stack *prev;
+}	t_stack;
+
+
+/* Validations */
+int	invalid_num_of_args(void);
+
+
+/* Auxiliar functions */
+int	matrix_lenght(void **matrix);
+
+#endif

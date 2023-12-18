@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 13:47:40 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/16 18:08:21 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:40:57 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ typedef struct s_stack {
 	struct s_stack *next;
 	struct s_stack *prev;
 } t_stack;
-
-
-typedef struct s_push {
-	t_stack *head;
-	t_stack *tail;
-} t_push;
 
 void	ft_print_matrix_str(void **matrix);
 void	ft_print_matrix_int(int *arr);

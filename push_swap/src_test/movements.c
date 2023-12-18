@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 15:43:44 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/16 18:07:56 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/18 14:47:12 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,64 +14,73 @@
 
 
 /* Swap the first two elements of stack*/
-void	mov_swap(t_push *stack)
+void	mov_swap(t_stack *stack)
 {
-	t_stack *temp;
-	t_stack *temp1;
+	int aux;
 
-	if (!stack->head)
+	if (!stack)
 		return ;
-	temp = stack->head;
-	if (!temp->next)
-		return ;
-	else
-	{
-		/* The first element turn 2nd element, prev == 2nd element, next == 3nd element*/
-		/* The 2nd element turns 1nd element, prev == tail, next == 1nd element */
-		/* Head == 2nd element, tail->next == head*/
-		temp1 = temp->next;
-		temp->next = temp1->next;
-		temp->prev = temp1;
-		temp1->next = temp;
-		temp1->prev = stack->tail;
-		stack->head = temp1;
-		stack->tail->next = stack->head;
-	}
+	aux = stack->content;
+	stack->content = stack->next->content;
+	stack->next->content = aux;
 }
 
 
 /* Swap two stacks in the same time (ss) */
-void	mov_ss(t_push *stack_a, t_push *stack_b)
+void	mov_ss(t_stack *stack_a, t_stack *stack_b)
 {
 	mov_swap(stack_a);
 	mov_swap(stack_b);
 	return ;
 }
 
+void	mov_push(t_stack *src, t_stack *dst)
+{
+	t_stack	*temp;
+
+	if (!src)
+		return ;
+	temp = src;
+	src = temp->next;
+	src->prev = NULL;
+	temp->next = dst;
+	dst = temp;
+}
+
 /*Considerations: Tail never change with 2 or more values, Head always change */
 /* Push top element of an stack to another */
-void	mov_push(t_push *src, t_push *dst)
+// void	mov_push(t_push *src, t_push *dst)
+// {
+// 	t_stack *temp;
+// 	t_stack *temp1;
+
+// 	/* Verifying if have a value in src stack */
+// 	if (!src->head)
+// 		return ;
+// 	temp = src->head;
+// 	/* Manipulate src stack */
+// 	temp1 = temp->next;
+// 	temp1->prev = src->tail;
+// 	src->head = temp1;
+// 	src->tail->next = src->head;
+// 	/* Manipulate dst stack */
+// 	if (!dst->head)
+// 		dst->head = temp;
+// 	temp->next = dst->head;
+// 	dst->head = temp;
+// 	if (!dst->tail)
+// 		dst->tail = temp;
+// 	temp->prev = dst->tail;
+// }
+
+
+void	mov_rotate(t_stack *stack)
 {
 	t_stack *temp;
-	t_stack *temp1;
 
-	/* Verifying if have a value in src stack */
-	if (!src->head)
+	if (!stack)
 		return ;
-	temp = src->head;
-	/* Manipulate src stack */
-	temp1 = temp->next;
-	temp1->prev = src->tail;
-	src->head = temp1;
-	src->tail->next = src->head;
-	/* Manipulate dst stack */
-	if (!dst->head)
-		dst->head = temp;
-	temp->next = dst->head;
-	dst->head = temp;
-	if (!dst->tail)
-		dst->tail = temp;
-	temp->prev = dst->tail;
+	temp = 
 }
 
 /* Rotate stack */

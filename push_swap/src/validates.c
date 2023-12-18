@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   validates.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 00:21:58 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/18 18:35:29 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/18 14:56:52 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/18 14:58:47 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
-{
-	int	signal;
-	int	result;
+#include "../inc/push_swap.h"
 
-	signal = 1;
-	result = 0;
-	while (((*nptr >= 9) && (*nptr <= 13)) || *nptr == 32)
-		nptr++;
-	if ((*nptr == 45) || (*nptr == 43))
-	{
-		if (*nptr == 45)
-			signal *= -1;
-		nptr++;
-	}
-	while ((*nptr >= 48) && (*nptr <= 57))
-	{
-		result *= 10;
-		result += *nptr - 48;
-		nptr++;
-	}
-	return (result * signal);
+int	invalid_num_of_args(void)
+{
+	ft_putstr_fd("Error\n- Invalid num of args, pass one or more int values\n", 2);
+	return (1);
 }

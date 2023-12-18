@@ -1,35 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/06 00:21:58 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/18 18:35:29 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/18 15:26:49 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/18 15:26:59 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
-{
-	int	signal;
-	int	result;
+#include "push_swap.h"
 
-	signal = 1;
-	result = 0;
-	while (((*nptr >= 9) && (*nptr <= 13)) || *nptr == 32)
-		nptr++;
-	if ((*nptr == 45) || (*nptr == 43))
+void	ft_free_matrix(void **matrix)
+{
+	int i;
+
+	i = 0;
+	while (matrix[i])
 	{
-		if (*nptr == 45)
-			signal *= -1;
-		nptr++;
+		free(matrix[i]);
+		i++;
 	}
-	while ((*nptr >= 48) && (*nptr <= 57))
-	{
-		result *= 10;
-		result += *nptr - 48;
-		nptr++;
-	}
-	return (result * signal);
+	free(matrix);
 }
