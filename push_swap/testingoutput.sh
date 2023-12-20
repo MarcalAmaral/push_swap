@@ -80,5 +80,5 @@ printf "\n$YELLOW	test08\n"
 printf "$GREEN$S1$RESET\n"
 
 printf "$BLUE    Program output\n"
-$PROGRAM 22 2121 --2132
+$PROGRAM 22 0 2121 -132
 printf "$RESET"
