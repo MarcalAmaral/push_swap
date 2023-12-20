@@ -1,6 +1,6 @@
 #! /bin/bash
 
-PROGRAM=./test2
+PROGRAM=./test3
 
 GREEN="\033[38;2;57;181;74m"
 RED="\033[38;2;222;56;43m"
@@ -31,7 +31,7 @@ printf "\n$YELLOW	test02\n"
 printf "$GREEN$S1$RESET\n"
 
 printf "$BLUE    Program output\n"
-$PROGRAM 22 2121 2132 dwd
+$PROGRAM 22 2121 2132 dwdarr[j]
 printf "$RESET"
 
 # Testing with mult params (char) passing in one string
@@ -68,6 +68,15 @@ printf "$RESET"
 
 # Testing with mult params passing in one string
 printf "\n$YELLOW	test07\n"
+printf "$GREEN$S1$RESET\n"
+
+printf "$BLUE    Program output\n"
+$PROGRAM 22 2121 --2132
+printf "$RESET"
+
+
+# Testing with mult params passing in one value == 0
+printf "\n$YELLOW	test08\n"
 printf "$GREEN$S1$RESET\n"
 
 printf "$BLUE    Program output\n"
