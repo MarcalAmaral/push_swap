@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/07/19 21:49:34 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/10 21:00:30 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+int	ft_printf(const char *format, ...)
 {
-	while (lst)
+	va_list	list;
+	int		i;
+	int		ret;
+
+	if (!format)
+		return (-1);
+	va_start(list, format);
+	i = 0;
+	ret = 0;
+	while (format[i])
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		if (format[i] == '%')
+		{
+			i++;
+			while (format[i] == ' ')
+				i++;
+			ret += ft_arg_check(list, format[i]);
+			i++;
+		}
+		else
+			ret += ft_putchar(format[i++]);
 	}
-	return (lst);
+	return (ret);
 }

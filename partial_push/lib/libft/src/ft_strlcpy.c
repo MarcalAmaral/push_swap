@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/05/12 01:51:19 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/01 02:06:08 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	while (lst)
+	size_t	len_src;
+	size_t	i;
+
+	len_src = ft_strlen(src);
+	if (size <= 0)
+		return (len_src);
+	i = 0;
+	while (--size && src[i])
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		*dst = src[i];
+		dst++;
+		i++;
 	}
-	return (lst);
+	*dst = '\0';
+	return (len_src);
 }

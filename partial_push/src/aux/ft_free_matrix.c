@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_free_matrix.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/22 12:23:52 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/22 12:24:00 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+void	ft_free_matrix(void **matrix)
 {
-	while (lst)
+	int i;
+
+	i = 0;
+	while (matrix[i])
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		free(matrix[i]);
+		i++;
 	}
-	return (lst);
+	free(matrix);
 }

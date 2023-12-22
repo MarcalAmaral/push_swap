@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/05/11 23:21:50 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/10 21:02:31 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+char	*ft_strnstr(const char *big, const char *little, size_t	len)
 {
-	while (lst)
+	size_t	little_len;
+
+	little_len = ft_strlen(little);
+	if (little_len < 1)
+		return ((char *)big);
+	if (len == 0)
+		return (NULL);
+	while (*big && len-- >= little_len)
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		if (ft_strncmp(big, little, little_len) == 0)
+			return ((char *) big);
+		big++;
 	}
-	return (lst);
+	return (NULL);
 }

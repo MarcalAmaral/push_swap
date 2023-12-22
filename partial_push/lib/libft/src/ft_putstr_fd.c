@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/05/15 20:48:54 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/10 21:01:47 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+void	ft_putstr_fd(char *s, int fd)
 {
-	while (lst)
+	if (!s)
+		return ;
+	while (*s)
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		ft_putchar_fd(*s, fd);
+		s++;
 	}
-	return (lst);
 }

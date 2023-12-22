@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/05/23 19:00:16 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/01 01:18:08 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	while (lst)
-	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
-	}
-	return (lst);
+	char		*ret;
+	char		*temp;
+	size_t		len_s;
+
+	if (!s)
+		return (NULL);
+	len_s = ft_strlen(s);
+	temp = (char *) s;
+	if (start > len_s)
+		return (ft_strdup(""));
+	if (len + start > len_s)
+		len = len_s - start;
+	ret = (char *) malloc((len + 1) * sizeof(char));
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, s + start, len + 1);
+	free(temp);
+	return (ret);
 }

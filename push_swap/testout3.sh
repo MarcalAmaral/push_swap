@@ -1,6 +1,6 @@
 #! bin/bash
 
-PROGRAM=./test3
+PROGRAM=./test
 
 GREEN="\033[38;2;57;181;74m"
 RED="\033[38;2;222;56;43m"
@@ -32,5 +32,20 @@ printf "$YELLOW	test01\n"
 printf "$GREEN$S1$RESET\n"
 
 printf "$BLUE    Program output\n"
-$PROGRAM 22 25 2 32 1 0
+$PROGRAM "22 25 0 2 32 1"
+printf "$RESET"
+
+
+printf "$YELLOW	test01\n"
+printf "$GREEN$S1$RESET\n"
+
+printf "$BLUE    Program output\n"
+$PROGRAM "22 25 0 2 32 1"
+printf "$RESET"
+
+printf "$YELLOW	test01\n"
+printf "$GREEN$S1$RESET\n"
+
+printf "$BLUE    Program output\n"
+$PROGRAM "22 25 0 2 32 1  0 2 32 1"
 printf "$RESET"

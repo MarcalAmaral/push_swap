@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_free_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/22 12:21:21 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/22 12:21:37 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+void	ft_free_stack(t_dlist **head)
 {
-	while (lst)
+	t_dlist	*temp;
+	t_dlist	*temp1;
+
+	if (!*head)
+		return ;
+	temp = *head;
+	while (temp)
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		temp1 = temp;
+		if (temp->next == *head)
+		{
+			free(temp1);
+			break ;
+		}
+		temp = temp->next;
+		free(temp1);
 	}
-	return (lst);
+	free(head);
+	return ;
 }

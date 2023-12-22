@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 15:02:39 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 12:11:04 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/22 12:21:55 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/22 18:40:52 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,37 @@
 # define INTMAX 2147483647
 # define INTMIN -2147483648
 
-t_dlist **init_stack(int *arr, int lenght);
-void	ft_free_list(t_dlist **head);
+typedef struct s_stacks {
+	t_dlist **a;
+	t_dlist **b;
+} t_stacks;
+
+/* Auxiliar functions */
+long int	ft_atoli(char *nptr);
+void		ft_free_matrix(void **matrix);
+void		ft_free_stack(t_dlist **head);
+int			matrix_lenght(void **matrix);
+int			ft_is_valid_c(char c);
+
+/* Message error */
+void		err_msg(int err);
+
+/* Initialize stacks */
+void		init1(int argc, char **argv);
+void		init2(int argc, char **argv);
+
+/* Linked list */
+void		ft_append_next_stack(t_dlist **head, t_dlist *node);
+t_dlist 	*ft_newnode_stack(int content);
+
+/* Validate functions */
+int			bigger_or_smaller_int(char **argv);
+int			find_invalid_c(char **argv);
+int			invalid_param(char **argv);
+int			duplicated_values(int *arr, int lenght);
+
+
+/* Extra functions */
+void		ft_print_stacks(t_dlist *a, t_dlist *b);
 
 #endif

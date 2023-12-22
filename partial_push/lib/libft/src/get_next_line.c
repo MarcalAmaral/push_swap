@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/07/02 14:01:20 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/10 21:02:45 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+char	*get_next_line(int fd)
 {
-	while (lst)
+	static t_vars	vars;
+
+	if (vars.iter >= vars.bytes_read)
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		vars.iter = 0;
+		while (vars.iter <= BUFFER_SIZE)
+		{
+			vars.buffer[vars.iter] = '\0';
+			vars.iter++;
+		}
+		vars.iter = 0;
+		vars.len = 0;
+		vars.fd = fd;
+		vars.bytes_read = read(vars.fd, vars.buffer, BUFFER_SIZE);
 	}
-	return (lst);
+	if (vars.bytes_read <= 0)
+		return (NULL);
+	return (ft_cpybuffer(&vars));
 }

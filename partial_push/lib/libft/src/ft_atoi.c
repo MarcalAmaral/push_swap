@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/05/06 00:21:58 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/18 18:35:29 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
-
-t_list	*ft_lstlast(t_list	*lst)
+int	ft_atoi(const char *nptr)
 {
-	while (lst)
+	int	signal;
+	int	result;
+
+	signal = 1;
+	result = 0;
+	while (((*nptr >= 9) && (*nptr <= 13)) || *nptr == 32)
+		nptr++;
+	if ((*nptr == 45) || (*nptr == 43))
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		if (*nptr == 45)
+			signal *= -1;
+		nptr++;
 	}
-	return (lst);
+	while ((*nptr >= 48) && (*nptr <= 57))
+	{
+		result *= 10;
+		result += *nptr - 48;
+		nptr++;
+	}
+	return (result * signal);
 }

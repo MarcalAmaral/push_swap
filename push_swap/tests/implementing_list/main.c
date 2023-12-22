@@ -6,88 +6,125 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:47:13 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/20 16:46:12 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:07:19 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./push_swap.h"
 
-void	ft_insertend_stack(t_stack **head, t_stack *new);
-void	ft_print_stack(t_stack **head);
-t_stack **array_to_list(int *arr, int lenght, t_stack **stacks);
-t_stack *ft_newnode_stack(int content);
+/* Go implement a circular linked list */
 
-t_stack **init_stack(int *arr, int lenght)
+t_dlist *ft_newnode_stack(int content)
 {
-	t_stack	**stacks;
+	t_dlist *new;
 
-	if (!arr)
-		return (NULL);
-	stacks = (t_stack **) ft_calloc(1, sizeof(t_stack **));
-	array_to_list(arr, lenght, stacks);
-	ft_print_stack(stacks);
-	return (stacks);
+	new = (t_dlist *) ft_calloc(1, sizeof(t_dlist));
+	new->content = content;
+	return (new);
 }
 
-void	ft_print_stack(t_stack **head)
+t_dlist *ft_lstlast_stack(t_dlist *node)
 {
-	t_stack *temp;
+	while (node)
+	{
+		if (node->next == NULL)
+			break ;
+		node = node->next;
+	}
+	return (node);
+}
+
+void	ft_append_next_stack(t_dlist **head, t_dlist *node)
+{
+	t_dlist *temp;
+
+	if (!node)
+		return ;
+	if (!*head)
+	{
+		node->next = node;
+		node->prev = node;
+		*head = node;
+		return ;
+	}
+	(*head)->prev->next = node;
+	node->next = *head;
+	node->prev = (*head)->prev;
+	(*head)->prev = node;
+	return ;
+}
+
+void	ft_free_list(t_dlist **head)
+{
+	t_dlist	*temp;
+	t_dlist	*temp1;
 
 	if (!*head)
 		return ;
 	temp = *head;
 	while (temp)
 	{
-		ft_printf("%d\n", temp->content);
+		temp1 = temp;
 		if (temp->next == *head)
+		{
+			free(temp1);
 			break ;
+		}
 		temp = temp->next;
+		free(temp1);
 	}
-	ft_printf("Stack\n");
+	free(head);
 	return ;
 }
 
-t_stack **array_to_list(int *arr, int lenght, t_stack **stacks)
+t_dlist **init_stack(int *arr, int lenght)
 {
-	int i;
+	t_dlist **head;
+	int		i;
 
 	i = 0;
+	head = (t_dlist **) ft_calloc(2, sizeof(t_dlist *));
 	while (i < lenght)
 	{
-		ft_insertend_stack(stacks, ft_newnode_stack(arr[i]));
+		ft_append_next_stack(head, ft_newnode_stack(arr[i]));
 		i++;
 	}
-	return (stacks);
+	return (head);
 }
 
-t_stack *ft_newnode_stack(int content)
-{
-	t_stack *new;
+// #include <stdio.h>
 
-	new = (t_stack *) ft_calloc(1, sizeof(t_stack));
-	new->content = content;
-	new->next = NULL;
-	new->prev = NULL;
-	return (new);
-}
+// int	main(void)
+// {
+// 	t_dlist **head;
+// 	t_dlist *temp;
+// 	int arr[] = {20, 30, 11, 10, 0, 5};
+// 	int i = sizeof(arr) / sizeof(*arr);
+// 	int j = 0;
 
-void	ft_insertend_stack(t_stack **head, t_stack *new)
-{
-	t_stack *last;
-	t_stack *old_first;
-
-	if (!new)
-		return ;
-	if (!*head)
-	{
-		new->next = new;
-		new->prev = new;
-		*head = new;
-		return ;
-	}
-	old_first = (*head);
-	last = (*head)->prev;
-	new->next = old_first;
-	old_first->prev = new;
-	last->next = new;
-}
+// 	// head = (t_dlist **) ft_calloc(1, sizeof(t_dlist **));
+// 	// while (j < i)
+// 	// {
+// 	// 	ft_append_next_stack(head, ft_newnode_stack((void *) arr[j]));
+// 	// 	j++;
+// 	// }
+// 	// temp = *head;
+// 	// while (temp)
+// 	// {
+// 	// 	ft_printf("%d\n", temp->content);
+// 	// 	if (temp->next == *head)
+// 	// 		break ;
+// 	// 	temp = temp->next;
+// 	// }
+// 	// ft_printf("Printing reverse list ========\n");
+// 	// temp = (*head)->prev;
+// 	// while (temp)
+// 	// {
+// 	// 	ft_printf("%d\n", temp->content);
+// 	// 	if (temp->prev == (*head)->prev)
+// 	// 		break ;
+// 	// 	temp = temp->prev;
+// 	// }
+// 	ft_free_list(head);
+// 	return (0);
+// }

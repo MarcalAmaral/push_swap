@@ -1,24 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/05/18 22:31:12 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/09/30 22:45:13 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	while (lst)
+	unsigned int	i;
+	char			*ret;
+
+	if (!s)
+		return ("\0");
+	i = 0;
+	while (s[i])
+		i++;
+	ret = (char *) malloc(i + 1);
+	if (!ret)
+		return (NULL);
+	i = 0;
+	while (s[i])
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		ret[i] = f(i, s[i]);
+		i++;
 	}
-	return (lst);
+	ret[i] = '\0';
+	return (ret);
 }

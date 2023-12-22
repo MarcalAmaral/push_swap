@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 15:33:33 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/20 17:46:25 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/22 12:18:52 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ int	matrix_lenght(void **matrix)
 
 void	init1(int argc, char **argv)
 {
-	t_stack **stacks;
+	t_dlist **stacks;
 	int		i;
 	char	**args;
 	int 	*arr;
@@ -193,14 +193,36 @@ void	init1(int argc, char **argv)
 		free(arr);
 		err_msg(ERRDUPVALUES);
 	}
+	stacks = init_stack(arr, matrix_lenght((void **) args));
 	ft_free_matrix((void **) args);
-	stacks = init_stack(arr, matrix_lenght((void **) argv));
+
+	t_dlist *temp;
+
+	temp = *stacks;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->content);
+		if (temp->next == *stacks)
+			break ;
+		temp = temp->next;
+	}
+	ft_printf("Printing reverse list ========\n");
+	temp = (*stacks)->prev;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->content);
+		if (temp->prev == (*stacks)->prev)
+			break ;
+		temp = temp->prev;
+	}
+	ft_free_list(stacks);
+	free(arr);
 	return ;
 }
 
 void	init2(int argc, char **argv)
 {
-	t_stack **stacks;
+	t_dlist **stacks;
 	int *arr;
 	int	i;
 
@@ -219,6 +241,28 @@ void	init2(int argc, char **argv)
 		err_msg(ERRDUPVALUES);
 	}
 	stacks = init_stack(arr, matrix_lenght((void **) argv));
+
+	t_dlist *temp;
+
+	temp = *stacks;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->content);
+		if (temp->next == *stacks)
+			break ;
+		temp = temp->next;
+	}
+	ft_printf("Printing reverse list ========\n");
+	temp = (*stacks)->prev;
+	while (temp)
+	{
+		ft_printf("%d\n", temp->content);
+		if (temp->prev == (*stacks)->prev)
+			break ;
+		temp = temp->prev;
+	}
+	ft_free_list(stacks);
+	free(arr);
 	return ;
 }
 

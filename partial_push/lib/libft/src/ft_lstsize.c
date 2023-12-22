@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/07/07 21:31:40 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/10/28 16:25:18 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/libft.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+int	ft_lstsize(t_list *lst)
 {
-	while (lst)
-	{
-		if (!lst->next)
-			return (lst);
+	int	i;
+
+	if (!lst)
+		return (0);
+	i = -1;
+	while (i++, lst)
 		lst = lst->next;
-	}
-	return (lst);
+	return (i);
 }

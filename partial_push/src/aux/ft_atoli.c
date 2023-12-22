@@ -1,24 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_atoli.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 21:41:05 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:32 by myokogaw         ###   ########.fr       */
+/*   Created: 2023/12/22 12:24:20 by myokogaw          #+#    #+#             */
+/*   Updated: 2023/12/22 12:24:38 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstlast(t_list	*lst)
+long int	ft_atoli(char *nptr)
 {
-	while (lst)
+	long int	signal;
+	long int	result;
+
+	signal = 1;
+	result = 0;
+	while (((*nptr >= 9) && (*nptr <= 13)) || *nptr == 32)
+		nptr++;
+	if ((*nptr == 45) || (*nptr == 43))
 	{
-		if (!lst->next)
-			return (lst);
-		lst = lst->next;
+		if (*nptr == 45)
+			signal *= -1;
+		nptr++;
 	}
-	return (lst);
+	while ((*nptr >= 48) && (*nptr <= 57))
+	{
+		result *= 10;
+		result += *nptr - 48;
+		nptr++;
+	}
+	return (result * signal);
 }
