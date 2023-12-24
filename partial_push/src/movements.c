@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:48:20 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 18:42:42 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/23 17:08:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,38 +28,76 @@ void	mov_swap(t_dlist *firstNode)
 	}
 }
 
-// void	move_ss(t_dlist **stacks)
-// {
-		
-// }
-
-void	mov_push(t_dlist **src, t_dlist **dest)
+t_dlist *red_for_push(t_dlist **src)
 {
 	t_dlist *temp;
-	t_dlist *f_src;
-	t_dlist *f_dst;
-
+	t_dlist *temp1;
+	
 	if (!*src)
-		return ;
-	f_src = *src;
-	if (!*dest)
+		return (NULL);
+	temp = *src;
+	if (temp->next == temp)
+	{ 
+		*src = NULL;
+		return (temp);
+	}
+	*src = temp->next;
+	temp1 = *src;
+	temp1->prev = temp->prev;
+	temp->next = NULL;
+	temp->prev = NULL;
+	return (temp);
+}
+
+void	push_add_dst(t_dlist **dst, t_dlist *node)
+{
+	t_dlist *temp;
+
+	if (!*dst)
 	{
-		temp = f_src;	
-		f_src->prev->next = temp->next;
-		f_src = temp->next;
-		f_src->prev = temp->prev;
-		temp->next = temp;
-		temp->prev = temp;
-		*dest = temp;
+		node->next = node;
+		node->prev = node;
+		*dst = node;
 		return ;
 	}
-	temp = f_src;
-	f_dst = *dest;
-	f_src = temp->next;
-	f_src->prev->next = f_src;
-	temp->next = f_dst;
-	temp->prev = f_dst->prev;
-	f_dst = temp;
+	temp = *dst;
+	if (temp->next == *dst)
+	{
+		temp->next = node;
+		temp->prev = node;
+		node->next = temp;
+		node->prev = temp;
+		*dst = node;
+		return ;
+	}
+	node->next = temp;
+	node->prev = temp->prev;
+	temp->prev = node;
+	*dst = node;
+	return ;
+}
+
+void	mov_push(t_dlist **src, t_dlist **dst)
+{
+	t_dlist *temp;
+
+	temp = red_for_push(src);
+	if (!temp)
+		return ;
+	push_add_dst(dst, temp);
+	return ;
+}
+
+void	append_array_to_stack(int *arr, int lenght, t_dlist **stack)
+{
+	int i = 0;
+
+	while (i < lenght)
+	{
+		ft_append_next_stack(stack, ft_newnode_stack(arr[i]));
+		i++;
+	}
+	return ;
 }
 
 int	main(void)
@@ -70,14 +108,14 @@ int	main(void)
 	int lenght = sizeof(arr) / sizeof(*arr);
 	int	i = 0;
 	
-	while (i < lenght)
-	{
-		ft_append_next_stack(&a, ft_newnode_stack(arr[i]));
-		i++;
-	}
+	append_array_to_stack(arr, lenght, &a);
 	ft_printf("Printing before move\n");
 	ft_print_stacks(a, b);
 	mov_push(&a, &b);
+	mov_push(&a, &b);
+	mov_push(&a, &b);
+	mov_push(&a, &b);
+	ft_printf("Printing after move\n");
 	ft_print_stacks(a, b);
 	return (0);
 }

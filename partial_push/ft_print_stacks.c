@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_stacks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:41:23 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 18:56:26 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/23 15:10:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,11 @@ int	*linked_lenght(t_dlist *a, t_dlist *b)
 	{
 		j++;
 		if (temp->next == b)
+		{
+			if (j == 1)
+				j++;
 			break ;
+		}
 		temp = temp->next;
 	}
 	ret = (int *) ft_calloc(3, sizeof(int));
@@ -46,30 +50,45 @@ void ft_print_stacks(t_dlist *a, t_dlist *b)
 	t_dlist *temp;
 	t_dlist *temp1;
 	int		*ret;
-	int		i = 0, j = 0;
+	int		i = 0;
+	int		j = 0;
+	int		k = 0;
+	int		max;
+	int		*lenght;
 
-
-	ret = linked_lenght(a, b);
+	lenght = linked_lenght(a, b);
+	if (lenght[0] > lenght[1])
+		max = lenght[0];
+	else
+		max = lenght[1]; 
 	if (a && b)
 	{
 		temp = a;
 		temp1 = b;
 		ft_printf("Printing stacks\n====================================================\n");
-		while (temp || temp1)
+		while (k < max)
 		{
-			ft_printf("%d	%d\n", temp->content, temp1->content);
-			if (i < ret[0])
+			if (j < lenght[0])
 			{
-				temp = temp->next;
-				i++;
-			}
-			if (j < ret[1])
-			{
+				ft_printf("%d", temp->content);
 				temp = temp->next;
 				j++;
 			}
-			if (i + 1 == ret[0] && j + 1 == ret[1])
-				break ;
+			if (i < lenght[1])
+			{
+				ft_printf("	%d", temp1->content);
+				temp1 = temp1->next;
+				i++;
+			}
+			ft_printf("\n");
+			k++;
+			// else
+			// {
+			// 	ft_printf("%d	%d", temp->content, temp1->content)
+			// 	temp = temp->next;
+			// 	temp1 = temp1->next;
+			// }
+			// ft_printf("\n");
 		}
 		ft_printf("Stack A	Stack B\n");
 		ft_printf("====================================================\n\n");
