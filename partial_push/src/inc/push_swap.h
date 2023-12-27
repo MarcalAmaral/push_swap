@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:21:55 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 18:40:52 by myokogaw         ###   ########.fr       */
+/*   Updated: 2023/12/27 15:01:26 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define INTMIN -2147483648
 
 typedef struct s_stacks {
-	t_dlist **a;
-	t_dlist **b;
+	t_list **a;
+	t_list **b;
 } t_stacks;
 
 /* Auxiliar functions */
@@ -53,8 +53,10 @@ int			find_invalid_c(char **argv);
 int			invalid_param(char **argv);
 int			duplicated_values(int *arr, int lenght);
 
+/* Init stack */
+void 		init_stack(int *arr, int lenght, t_stacks *stacks);
 
 /* Extra functions */
-void		ft_print_stacks(t_dlist *a, t_dlist *b);
+void		ft_print_stacks(t_list *a, t_list *b);
 
 #endif
