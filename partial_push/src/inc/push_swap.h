@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:21:55 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/27 15:01:26 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/06 11:57:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 # define INTMIN -2147483648
 
 typedef struct s_stacks {
-	t_list **a;
-	t_list **b;
+	t_dlist **a;
+	t_dlist **b;
 } t_stacks;
 
 /* Auxiliar functions */
@@ -44,8 +44,10 @@ void		init1(int argc, char **argv);
 void		init2(int argc, char **argv);
 
 /* Linked list */
-void		ft_append_next_stack(t_dlist **head, t_dlist *node);
-t_dlist 	*ft_newnode_stack(int content);
+t_dlist *ft_newnode_list(int content);
+t_dlist	*ft_lstlast_dlist(t_dlist *list);
+void	ft_append_next_list(t_dlist **head, t_dlist *node);
+void	ft_append_prev_list(t_dlist **head);
 
 /* Validate functions */
 int			bigger_or_smaller_int(char **argv);
@@ -57,6 +59,6 @@ int			duplicated_values(int *arr, int lenght);
 void 		init_stack(int *arr, int lenght, t_stacks *stacks);
 
 /* Extra functions */
-void		ft_print_stacks(t_list *a, t_list *b);
+void		ft_print_stacks(t_dlist *a, t_dlist *b);
 
 #endif

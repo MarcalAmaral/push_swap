@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:27:46 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/27 15:03:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/06 12:08:57 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@ void init_stack(int *arr, int lenght, t_stacks *stacks)
 	int	i;
 
 	i = 0;
-	stacks->a = (t_list **) ft_calloc(1, sizeof(t_list *));
-	stacks->b = (t_list **) ft_calloc(1, sizeof(t_list *));
+	stacks->a = (t_dlist **) ft_calloc(1, sizeof(t_dlist *));
+	stacks->b = (t_dlist **) ft_calloc(1, sizeof(t_dlist *));
 	while (i < lenght)
 	{
-		ft_lstadd_back(stacks->a, ft_lstnew((void *) arr[i]));
+		ft_append_next_list(stacks->a, ft_newnode_list(arr[i]));
 		i++;
 	}
+	ft_append_prev_list(stacks->a);
 	return ;
 }
 

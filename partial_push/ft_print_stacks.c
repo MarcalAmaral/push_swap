@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_stacks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:41:23 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/27 15:12:19 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/06 12:31:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	*linked_lenght(t_list *a, t_list *b)
+int	*linked_lenght(t_dlist *a, t_dlist *b)
 {
-	t_list *temp;
+	t_dlist *temp;
 	int		i = 0;
 	int		j = 0;
 	int		*ret;
@@ -45,10 +45,10 @@ int	*linked_lenght(t_list *a, t_list *b)
 	return (ret);
 }
 
-void ft_print_stacks(t_list *a, t_list *b)
+void ft_print_stacks(t_dlist *a, t_dlist *b)
 {
-	t_list *temp;
-	t_list *temp1;
+	t_dlist *temp;
+	t_dlist *temp1;
 	int		*ret;
 	int		i = 0;
 	int		j = 0;
@@ -70,13 +70,13 @@ void ft_print_stacks(t_list *a, t_list *b)
 		{
 			if (i < lenght[0])
 			{
-				ft_printf("%d	", temp->content);
+				ft_printf("%d", temp->content);
 				temp = temp->next;
 				i++;
 			}
 			if (j < lenght[1])
 			{
-				ft_printf("%d", temp1->content);
+				ft_printf("	%d", temp1->content);
 				temp1 = temp1->next;
 				j++;
 			}
