@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validates.c                                        :+:      :+:    :+:   */
+/*   validations.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:26:39 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 12:37:41 by myokogaw         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:08:39 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../inc/push_swap.h"
 
 int	bigger_or_smaller_int(char **argv)
 {
-	int i;
-	int j;
+	int i; 
 	long int n;
 
 	i = 0;
@@ -52,8 +51,7 @@ int	find_invalid_c(char **argv)
 int	invalid_param(char **argv)
 {
 	int i;
-	int j;
-	
+
 	i = 0;
 	if (find_invalid_c(argv))
 		return (TRUE);
@@ -61,7 +59,7 @@ int	invalid_param(char **argv)
 	{
 		if (ft_strncmp(argv[i], "0", 1) != 0)
 		{
-			if (ft_atoi(argv[i]) == 0)
+			if (ft_atoi((char const *) argv[i]) == 0)
 				return (TRUE);
 		}
 		i++;
@@ -88,3 +86,10 @@ int	duplicated_values(int *arr, int lenght)
 	}
 	return (FALSE);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	if (invalid_param(&argv[1]) == 1)
+// 		ft_printf("Invalid params\n");
+// 	return (argc);
+// }

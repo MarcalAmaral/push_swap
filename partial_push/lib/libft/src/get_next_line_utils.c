@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/02 13:46:29 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/10/16 20:38:56 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/09 15:56:42 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ t_byte	*ft_newnode(char content)
 	return (new);
 }
 
-void	ft_addend_list(t_byte **start, t_byte *new)
+void	ft_addend_list(t_byte **start, t_byte *new_c)
 {
 	t_byte	*temp;
 
-	if (!new)
+	if (!new_c)
 		return ;
 	if (!*start)
 	{
-		*start = new;
+		*start = new_c;
 		return ;
 	}
 	temp = *start;
 	while (temp->next)
 		temp = temp->next;
-	temp->next = new;
+	temp->next = new_c;
 }
 
 char	*ft_cpybuffer(t_vars *vars)

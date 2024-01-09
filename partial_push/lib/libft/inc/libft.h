@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 20:26:52 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 12:06:38 by myokogaw         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:58:04 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 2
 # endif
+
+#ifdef __cplusplus
+	extern "C" {
+#endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -80,8 +84,8 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	*ft_calloc(size_t nmemb, size_t size);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
-void	ft_lstadd_front(t_list **lst, t_list *new);
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new_node);
+void	ft_lstadd_back(t_list **lst, t_list *new_node);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t	len);
 char	*ft_strjoin(const char *s1, const char *s2);
@@ -96,7 +100,7 @@ t_list	*ft_lstnew(void *content);
 t_list	*ft_lstlast(t_list *lst);
 char	*get_next_line(int fd);
 t_byte	*ft_newnode(char content);
-void	ft_addend_list(t_byte **head, t_byte *new);
+void	ft_addend_list(t_byte **head, t_byte *new_c);
 char	*ft_cpybuffer(t_vars *vars);
 char	*ft_returnline(t_vars *vars);
 int		ft_printf(const char *format, ...);
@@ -107,5 +111,9 @@ int		ft_putnbr_unsigned_int(unsigned int n);
 int		ft_putstr(const char *str);
 int		ft_putchar(const char c);
 int		ft_arg_check(va_list list, const char flag);
+
+#ifdef __cplusplus
+	}
+#endif
 
 #endif

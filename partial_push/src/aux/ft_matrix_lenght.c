@@ -6,13 +6,13 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:23:20 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 12:23:33 by myokogaw         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:00:53 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	matrix_lenght(void **matrix)
+int	ft_matrix_lenght(void **matrix)
 {
 	int i = 0;
 

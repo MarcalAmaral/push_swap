@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:21:55 by myokogaw          #+#    #+#             */
-/*   Updated: 2024/01/06 11:57:45 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/09 16:59:55 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "../../lib/libft/inc/libft.h"
+# include "../lib/libft/inc/libft.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -24,6 +24,10 @@
 # define INTMAX 2147483647
 # define INTMIN -2147483648
 
+#ifdef __cplusplus
+	extern "C" {
+#endif
+
 typedef struct s_stacks {
 	t_dlist **a;
 	t_dlist **b;
@@ -33,15 +37,15 @@ typedef struct s_stacks {
 long int	ft_atoli(char *nptr);
 void		ft_free_matrix(void **matrix);
 void		ft_free_stack(t_dlist **head);
-int			matrix_lenght(void **matrix);
+int			ft_matrix_lenght(void **matrix);
 int			ft_is_valid_c(char c);
 
 /* Message error */
 void		err_msg(int err);
 
 /* Initialize stacks */
-void		init1(int argc, char **argv);
-void		init2(int argc, char **argv);
+void		init_str(int argc, char **argv);
+void		init_mult_str(int argc, char **argv);
 
 /* Linked list */
 t_dlist *ft_newnode_list(int content);
@@ -60,5 +64,9 @@ void 		init_stack(int *arr, int lenght, t_stacks *stacks);
 
 /* Extra functions */
 void		ft_print_stacks(t_dlist *a, t_dlist *b);
+
+#ifdef __cplusplus
+	}
+#endif
 
 #endif
