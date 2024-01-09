@@ -11,7 +11,13 @@ PATH_LIBFTLIB = $(PATH_LIBFT)/libft.a
 # compile macros
 NAME = push_swap
 
-SRC_FILES = src/validations.c
+SRC_FILES = src/validations.c \
+			src/init.c \
+			src/main.c \
+			src/ft_print_stacks.c \
+			src/handle_error.c \
+			src/linked_list.c \
+			src/movements.c
 
 INCLUDE = -I./inc
 

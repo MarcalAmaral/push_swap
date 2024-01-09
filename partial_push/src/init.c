@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:27:46 by myokogaw          #+#    #+#             */
-/*   Updated: 2024/01/09 12:28:00 by myokogaw         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:13:00 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,55 +28,52 @@ void init_stack(int *arr, int lenght, t_stacks *stacks)
 	return ;
 }
 
-int	validations(char **args)
+int	first_validations(char **args)
 {
 	if (invalid_param(args))
 		return(INVPARAMS);
 	if (bigger_or_smaller_int(args))
 		return(BIGSMLINT);
+	return (0);
 }
 
-int *formated_array(char **argv, int type_init)
+int *formated_array(char **argv, int argc)
 {
 	char **args;
 	int	i;
-	int	lenght;
 	int	*arr;
 
-	if (type_init == 0)
+	if (argc == 1)
 		args = ft_split(argv[0], ' ');
 	else
 		args = argv;
-	i = matrix_lenght((void **) args);
+	err_msg(first_validations(argv));
+	i = ft_matrix_lenght((void **) args);
 	arr = (int *) ft_calloc(i + 1, sizeof(int));
 	arr[i] = 0;
 	while (--i >= 0)
 		arr[i] = ft_atoi(args[i]);
-	if (duplicated_values(arr, ft_matrix_lenght((void **) args)) == 1)
+	if (duplicated_values(arr, argc) == 1)
 	{
-		if (type_init == 0)
+		if (argc == 1)
 			ft_free_matrix((void **) args);		
 		free(arr);
 		err_msg(ERRDUPVALUES);	
 	}
-	if (type_init == 0)
-		ft_free_matrix(args);
+	if (argc == 1)
+		ft_free_matrix((void **) args);
 	return (arr);
 }
 
-void	init_str(int argc, char **argv)
+
+void	init_str(char **argv)
 {
 	t_stacks stacks;
-	int		i;
-	char	**args;
 	int 	*arr;
 
-	i = 0;
-	i = first_validations(args);
-	if (i != 0)
-		err_msg(i);
-	arr = formated_array(args, 0);
-	init_stack(arr, ft_matrix_lenght((void **) args), &stacks);
+	arr = formated_array(argv, 1);
+	init_stack(arr, 5, &stacks);
+	ft_print_stacks(*stacks.a, *stacks.b);
 	return ;
 }
 
@@ -84,13 +81,9 @@ void	init_mult_str(int argc, char **argv)
 {
 	t_stacks stacks;
 	int *arr;
-	int	i;
 
-	i = 0;
-	i = first_validations(argv);
-	if (i != 0)
-		err_msg(i);
-	formated_array(argv, 1);
-	init_stack(arr, ft_matrix_lenght((void **) argv), &stacks);
+	arr = formated_array(argv, argc);
+	init_stack(arr, argc, &stacks);
+	ft_print_stacks(*stacks.a, *stacks.b);
 	return ;
 }

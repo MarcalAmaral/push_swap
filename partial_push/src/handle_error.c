@@ -6,13 +6,13 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:25:04 by myokogaw          #+#    #+#             */
-/*   Updated: 2023/12/22 12:25:12 by myokogaw         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:13:25 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	err_msg(int err)
+int		err_msg(int err)
 {
 	if (err == INVNUMARGS)
 	{
@@ -34,4 +34,5 @@ void	err_msg(int err)
 		ft_putstr_fd("Error\n- Just pass int values, bigger or smaller is not accept.\n", STDERR_FILENO);
 		exit(BIGSMLINT);
 	}
+	return (0);
 }

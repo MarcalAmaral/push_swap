@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_stacks.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:41:23 by myokogaw          #+#    #+#             */
-/*   Updated: 2024/01/06 12:31:38 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/09 19:13:43 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void ft_print_stacks(t_dlist *a, t_dlist *b)
 {
 	t_dlist *temp;
 	t_dlist *temp1;
-	int		*ret;
 	int		i = 0;
 	int		j = 0;
 	int		k = 0;

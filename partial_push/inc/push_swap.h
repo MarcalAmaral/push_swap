@@ -6,7 +6,7 @@
 /*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:21:55 by myokogaw          #+#    #+#             */
-/*   Updated: 2024/01/09 16:59:55 by myokogaw         ###   ########.fr       */
+/*   Updated: 2024/01/09 19:13:34 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ int			ft_matrix_lenght(void **matrix);
 int			ft_is_valid_c(char c);
 
 /* Message error */
-void		err_msg(int err);
+int		err_msg(int err);
 
 /* Initialize stacks */
-void		init_str(int argc, char **argv);
+void		init_str(char **argv);
 void		init_mult_str(int argc, char **argv);
 
 /* Linked list */
@@ -58,6 +58,8 @@ int			bigger_or_smaller_int(char **argv);
 int			find_invalid_c(char **argv);
 int			invalid_param(char **argv);
 int			duplicated_values(int *arr, int lenght);
+
+int			*formated_array(char **argv, int type_init);
 
 /* Init stack */
 void 		init_stack(int *arr, int lenght, t_stacks *stacks);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: myokogaw <myokogaw@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 12:48:20 by myokogaw          #+#    #+#             */
-/*   Updated: 2024/01/06 13:01:03 by codespace        ###   ########.fr       */
+/*   Updated: 2024/01/09 18:49:54 by myokogaw         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,29 +116,29 @@ void	mov_rrr(t_stacks *stacks)
 	mov_reverse_rotate(stacks->b);
 }
 
-int	main(void)
-{
-	t_stacks stacks;
-	int arr[] = {200, 2100, 2320, 0, -1299, 50};
-	int lenght = sizeof(arr) / sizeof(*arr);
-	int	i = 0;
+// int	main(void)
+// {
+// 	t_stacks stacks;
+// 	int arr[] = {200, 2100, 2320, 0, -1299, 50};
+// 	int lenght = sizeof(arr) / sizeof(*arr);
+// 	int	i = 0;
 	
-	init_stack(arr, lenght, &stacks);
-	ft_printf("Printing before move\n");
-	ft_print_stacks(*stacks.a, *stacks.b);
-	// mov_push(stacks.a, stacks.b);
-	// mov_swap(*stacks.a);
-	mov_push(stacks.a, stacks.b);
-	mov_push(stacks.a, stacks.b);
-	mov_push(stacks.a, stacks.b);
-	mov_push(stacks.a, stacks.b);
-	mov_push(stacks.a, stacks.b);
-	mov_push(stacks.a, stacks.b);
-	// mov_ss(stacks.a, stacks.b);
-	// mov_rrr(&stacks);
-	ft_printf("Printing after move\n");
-	ft_print_stacks(*stacks.a, *stacks.b);
-	// ft_printf("Printing after move\n");
-	// ft_print_stacks(a, b);
-	return (0);
-}
+// 	init_stack(arr, lenght, &stacks);
+// 	ft_printf("Printing before move\n");
+// 	ft_print_stacks(*stacks.a, *stacks.b);
+// 	// mov_push(stacks.a, stacks.b);
+// 	// mov_swap(*stacks.a);
+// 	mov_push(stacks.a, stacks.b);
+// 	mov_push(stacks.a, stacks.b);
+// 	mov_push(stacks.a, stacks.b);
+// 	mov_push(stacks.a, stacks.b);
+// 	mov_push(stacks.a, stacks.b);
+// 	mov_push(stacks.a, stacks.b);
+// 	// mov_ss(stacks.a, stacks.b);
+// 	// mov_rrr(&stacks);
+// 	ft_printf("Printing after move\n");
+// 	ft_print_stacks(*stacks.a, *stacks.b);
+// 	// ft_printf("Printing after move\n");
+// 	// ft_print_stacks(a, b);
+// 	return (0);
+// }
